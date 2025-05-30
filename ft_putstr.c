@@ -1,9 +1,14 @@
 #include "ft_printf.h"
 
-size_t	ft_putstr(const char *str)
+int	ft_putstr(char *s)
 {
-	if (!str)
-		return (write(1, "(null)", 6));
-	else
-		return (write(1, str, ft_strlen(str)));
+	int	slen;
+	if (s == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	slen = ft_strlen(s);
+	write(1, s, slen);
+	return (slen);
 }

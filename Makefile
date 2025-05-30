@@ -1,26 +1,27 @@
+NAME = libftprintf.a 
+RM = rm -f
 
-NAME = libftprintf.a
-SRCS = ft_putnbr.c ft_putstr.c ft_strlen.c ft_putchar.c ft_printf.c
+SRCS = ft_printf.c ft_putchar.c ft_puthexamaj.c  ft_puthexamin.c ft_putstr.c ft_putunbr.c ft_putpointer.c ft_strlen.c ft_putnbr.c 
+OBJ = $(SRCS:.c=.o)
 
-OBJS = ${SRCS:.c=.o}
+CC      =   gcc 
+FLAGS  =   -Wall -Wextra -Werror
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+all: $(NAME)
 
-${NAME}: ${OBJS}
-	ar -rsc ${NAME} ${OBJS}
-
-all: ${NAME}
-
+# Création de la bibliothèque
+$(NAME): $(OBJ) 
+	ar -rcs $@ $^
+# Compilation des fichiers sources en objets
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
+	$(CC) $(FLAGS) -c -o $@ $^
+# Suppression des objets
 clean:
-	rm -f ${OBJS}
-
+	$(RM) $(OBJ) 
+# Suppression des objets et de la bibliothèque
 fclean: clean
-	rm -f ${NAME}
-
+	$(RM) $(NAME)
+# Recompilation complète
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

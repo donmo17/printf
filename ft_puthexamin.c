@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	ft_puthexamaj(const unsigned int n)
+int	ft_puthexamin(const unsigned int n)
 {
 	int	x;
 	
@@ -20,7 +20,7 @@ int	ft_puthexamaj(const unsigned int n)
 		else
 		{
 			ft_putchar(n - 10 + 'A');
-			x ++;
+		     x ++;
 		}
 	}
 	return (x);

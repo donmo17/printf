@@ -1,23 +1,25 @@
 #include "ft_printf.h"
 
-static size_t	print_nb(long nb)
+int	ft_putnbr(int n)
 {
-	if (nb / 10)
-		return (print_nb(nb / 10) + print_nb(nb % 10));
-	else
-		return (ft_putchar(nb + '0'));
-}
-
-size_t	ft_putnbr(const int n)
-{
-	long	nb;
-
-	nb = n;
-	if (nb < 0)
+	int	x = 1;
+	if (n == -2147483648)
 	{
-		nb = -nb;
-		return (ft_putchar('-') + print_nb(nb));
+		write (1, "-2147483648", 11);
+		return (11) ;
 	}
-	else
-		return (print_nb(nb));
+
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+		x++;
+	}
+	if (n >= 10)
+	{
+		x += ft_putnbr(n / 10);
+		
+	}
+	ft_putchar(n % 10 + '0');
+	return (x);
 }
